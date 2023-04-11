@@ -1,0 +1,33 @@
+@media print {
+
+    .table.table-bordered thead th,
+    .table.table-bordered thead td,
+    .table.table-bordered thead th,
+    .table.table-bordered tbody td {
+        border: 1px solid #e8e7e6 !important;
+    }
+
+    .table.table-bordered,
+    .table.table-bordered tfoot th,
+    .table.table-bordered tfoot td {
+        border: none !important;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.5rem !important;
+    }
+
+    header, footer, nav, aside {
+        display: none !important;
+    }
+
+    #print {
+        width: 100vw !important;
+        margin: 0 !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}

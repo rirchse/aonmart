@@ -1,0 +1,1237 @@
+{
+	"info": {
+		"_postman_id": "3d0aa324-c515-4563-a1ca-fabb84832148",
+		"name": "Aonmart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "V1",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Forget Password",
+							"item": [
+								{
+									"name": "Verify Forget Password",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email_or_phone\": \"ashokbaruaakas@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/verify-forget-password",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"verify-forget-password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Verify OTP",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"email_or_phone\": \"ashokbaruaakas@gmail.com\",\n\t\"otp\": 890396\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/verify-otp",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"verify-otp"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Reset Password",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"email_or_phone\": \"ashokbaruaakas@gmail.com\",\n\t\"otp\": 890396,\n\t\"new_password\": \"new_password\",\n\t\"new_password_confirmation\": \"new_password\"\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/reset-password",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"reset-password"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseData = JSON.parse(responseBody)",
+											"pm.environment.set(\"auth_token\", responseData.data.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"API User\",\n    \"email\": \"apiuser@gmail.com\",\n    \"mobile\": \"01234567890\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile",
+											"value": "01829853914"
+										},
+										{
+											"key": "password",
+											"value": "password"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseData = JSON.parse(responseBody)",
+											"pm.environment.set(\"auth_token\", responseData.data.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"mobile\": \"01234567890\",\n\t\"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Under Store",
+					"item": [
+						{
+							"name": "Stores",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseData = JSON.parse(responseBody)",
+											"pm.environment.set(\"store_id\", responseData.data[0].id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Information",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Products",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseData = JSON.parse(responseBody)",
+											"pm.environment.set(\"product_id\", responseData.data[0].id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Product Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/products/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"products",
+										"{{product_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Banners",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseData = JSON.parse(responseBody)",
+											"pm.environment.set(\"banner_key\", responseData.data[0].key);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/banners",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"banners"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "why_people_love",
+											"description": "banner or why_people_love",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Banner By Key",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/banners/{{banner_key}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"banners",
+										"{{banner_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Videos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/videos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Slides",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/slides",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"slides"
+									]
+								},
+								"description": "Available Slide Types:\n- 1 => \"Default Slides\",\n- 2 => \"How To Order Slides\""
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Get Addresses",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/addresses",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "DELETE"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/address-delete/{{address_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"address-delete",
+										"{{address_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "address",
+											"value": "House No: xxxx, x no Road, xst floor"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/address-save",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"address-save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Order Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/orders/{{order_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"{{order_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Order Lists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Place an Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "store_id",
+											"value": "{{store_id}}"
+										},
+										{
+											"key": "total",
+											"value": "500"
+										},
+										{
+											"key": "details",
+											"value": "[\n\t{\n\t\t\"product_id\": 81,\n\t\t\"qty\": 1,\n\t\t\"price\": 959\n\t},\n\t{\n\t\t\"product_id\": 110,\n\t\t\"qty\": 1,\n\t\t\"price\": 14\n\t}\n]"
+										},
+										{
+											"key": "address_id",
+											"value": "{{address_id}}"
+										},
+										{
+											"key": "address",
+											"value": "House No: xxxx, x no Road, xst floor"
+										},
+										{
+											"key": "payment_method",
+											"value": "{{payment_method}}"
+										},
+										{
+											"key": "requested_from",
+											"value": "1"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders"
+									]
+								},
+								"description": "### Requested From\n* There is an filed name \"requested_from\"\n* This is an required filed\n* Possible values for this filed: 1 or 2. \n* 1 => If requested from web or 2 => if requested from mobile app\n\n### Shipping Address Data\n\n* You have to send address_id or address save required fields data. \n\n* For Example:\n\n`` address_id : 1 -- when exists address_id and it's valid then you don't have to send others address related fields data. ``\n\n`` If the address _id field data doesn't exist, then you have to send new address-related fields(division_id, district_id, upazila_id, mobile, address) data. ``"
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"reason\": \"Testing\",\n\t\"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/orders/{{order_id}}/cancel",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"{{order_id}}",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User APIs",
+					"item": [
+						{
+							"name": "Remove Wishlist Products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/remove/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"remove",
+										"{{product_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Wishlist Products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/add/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"add",
+										"{{product_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wishlist Products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/{{store_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"{{store_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile Picture",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT"
+										},
+										{
+											"key": "image"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-profile-picture",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-profile-picture"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cover Photo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT"
+										},
+										{
+											"key": "cover_image"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-cover-photo",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-cover-photo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT"
+										},
+										{
+											"key": "name",
+											"value": "Updated Name"
+										},
+										{
+											"key": "mobile",
+											"value": "01829853914"
+										},
+										{
+											"key": "email",
+											"value": "ashokbaruaakas@gmail.com"
+										},
+										{
+											"key": "about",
+											"value": "The macAddress method creates a column that is intended to hold a MAC address. Some database systems, such as PostgreSQL, have a dedicated column type for this type of data. Other database systems will use a string equivalent column:\n\n"
+										},
+										{
+											"key": "image"
+										},
+										{
+											"key": "cover_image"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile By User ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/profile/{{user_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"profile",
+										"{{user_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GEO Data",
+					"item": [
+						{
+							"name": "Upazilas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/upazilas?district_id={{district_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"upazilas"
+									],
+									"query": [
+										{
+											"key": "district_id",
+											"value": "{{district_id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Districts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/districts?division_id={{division_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"districts"
+									],
+									"query": [
+										{
+											"key": "division_id",
+											"value": "{{division_id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Divisions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/divisions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"divisions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Feedback",
+					"item": [
+						{
+							"name": "Save New Feedback",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"content\": \"Working...\",\n\t\"reference\": \"ORDER\",\n\t\"reference_id\": \"3\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/feedback",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"feedback"
+									]
+								},
+								"description": "## \"reference\" filed\n- This is a constant value\n- Available reference constant: [\"ORDER\"]\n\n## \"reference_id\" filed\n- This is a dynamic id related with reference\n- Here you have to put id of reference instances.\n- For example: If reference is \"ORDER\", then you have put the order_id as reference_id"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sidebar Menu Item",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sidebar-menu-items?store_id={{store_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sidebar-menu-items"
+							],
+							"query": [
+								{
+									"key": "store_id",
+									"value": "{{store_id}}"
+								}
+							]
+						},
+						"description": "# Demo Response:\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"ut\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"officia\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-sub-categories\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    },\n    \"message\": \"Sub Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sub Sub Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sub-sub-categories?sub_category_id={{sub_category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sub-sub-categories"
+							],
+							"query": [
+								{
+									"key": "sub_category_id",
+									"value": "{{sub_category_id}}"
+								}
+							]
+						},
+						"description": "# Demo Response:\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"ut\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"officia\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-sub-categories\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    },\n    \"message\": \"Sub Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sub Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sub-categories?category_id={{category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sub-categories"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "{{category_id}}"
+								}
+							]
+						},
+						"description": "# Demo Response\n```\n{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"necessitatibus\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_sub_categories\": \"http://aonmart.test/api/v1/sub-sub-categories?sub_category_id=2\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-categories\",\n        \"per_page\": 15,\n        \"to\": 1,\n        \"total\": 1\n    },\n    \"message\": \"Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/categories?store_id={{store_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "store_id",
+									"value": "{{store_id}}"
+								}
+							]
+						},
+						"description": "# Demo Response\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"et\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=4\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"qui\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=6\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"amet\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=8\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"voluptates\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=10\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/categories\",\n        \"per_page\": 15,\n        \"to\": 4,\n        \"total\": 4\n    },\n    \"message\": \"Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Methods",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payment-methods",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment-methods"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{auth_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

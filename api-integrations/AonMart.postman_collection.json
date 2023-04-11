@@ -1,0 +1,1199 @@
+{
+	"info": {
+		"_postman_id": "8bb1ae39-d50c-4014-9d03-677290a95328",
+		"name": "AonMart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "V1",
+			"item": [
+				{
+					"name": "GEO Data",
+					"item": [
+						{
+							"name": "Divisions",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/divisions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"divisions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Districts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/districts?division_id={{division_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"districts"
+									],
+									"query": [
+										{
+											"key": "division_id",
+											"value": "{{division_id}}",
+											"description": "Optional - You can filter by division id"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upazilas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/upazilas?district_id={{district_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"upazilas"
+									],
+									"query": [
+										{
+											"key": "district_id",
+											"value": "{{district_id}}",
+											"description": "Optional - You can filter by district id"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile",
+											"value": "01829853914",
+											"contentType": "string|between:11,14",
+											"description": "Required",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"contentType": "string|min:8",
+											"description": "Required",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile",
+											"value": "01829853918",
+											"contentType": "string|between:11,14",
+											"description": "Required",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"contentType": "string|min:8",
+											"description": "Required",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registration",
+							"protocolProfileBehavior": {
+								"strictSSL": true,
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"followAuthorizationHeader": false,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"API User\",\n    \"mobile\": \"01829853914\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User APIs",
+					"item": [
+						{
+							"name": "My Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile By User ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/profile/{{user_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"profile",
+										"{{user_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"contentType": "string",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Updated Name",
+											"contentType": "string",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "mobile",
+											"value": "01829853914",
+											"contentType": "numeric",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ashokbaruaakas@gmail.com",
+											"contentType": "email",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "about",
+											"value": "The macAddress method creates a column that is intended to hold a MAC address. Some database systems, such as PostgreSQL, have a dedicated column type for this type of data. Other database systems will use a string equivalent column:\n\n",
+											"contentType": "text",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"contentType": "image/jpeg/jpg/png",
+											"description": "nullable",
+											"type": "file",
+											"src": "/home/ashok/Pictures/Screenshot from 2021-09-28 08-05-02.png"
+										},
+										{
+											"key": "cover_image",
+											"contentType": "image/jpeg/jpg/png",
+											"description": "nullable",
+											"type": "file",
+											"src": "/home/ashok/Pictures/lara logo.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cover Photo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"contentType": "string",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "cover_image",
+											"contentType": "image/jpeg/jpg/png",
+											"description": "required",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-cover-photo",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-cover-photo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile Picture",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"contentType": "string",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"contentType": "image/jpeg/jpg/png",
+											"description": "required",
+											"type": "file",
+											"src": "/home/ashok/Pictures/Screenshot from 2021-09-28 08-05-02.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/update-profile-picture",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"update-profile-picture"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wishlist Products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/{{store_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"{{store_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Wishlist Products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/add/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"add",
+										"{{product_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Wishlist Products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/wishlist-products/remove/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"wishlist-products",
+										"remove",
+										"{{product_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Place an Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "store_id",
+											"value": "{{store_id}}",
+											"contentType": "integer",
+											"description": "Required",
+											"type": "text"
+										},
+										{
+											"key": "total",
+											"value": "500",
+											"contentType": "numeric",
+											"description": "Required",
+											"type": "text"
+										},
+										{
+											"key": "details",
+											"value": "[\n   {\n      \"product_id\":3 ,\n      \"qty\":1,\n      \"price\":300\n },\n   {\n      \"product_id\":4,\n      \"qty\":1,\n      \"price\":200\n   }\n]",
+											"contentType": "application/json",
+											"description": "Required",
+											"type": "text"
+										},
+										{
+											"key": "address_id",
+											"value": "{{address_id}}",
+											"contentType": "integer",
+											"description": "Alternative with address fields",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "House No: xxxx, x no Road, xst floor",
+											"contentType": "string",
+											"description": "Alternative with address_id field",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders"
+									]
+								},
+								"description": "### Shipping Address Data\n\n* You have to send address_id or address save required fields data. \n\n* For Example:\n\n`` address_id : 1 -- when exists address_id and it's valid then you don't have to send others address related fields data. ``\n\n`` If the address _id field data doesn't exist, then you have to send new address-related fields(division_id, district_id, upazila_id, mobile, address) data. ``"
+							},
+							"response": []
+						},
+						{
+							"name": "Order Lists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders"
+									],
+									"query": [
+										{
+											"key": "order_status",
+											"value": "0",
+											"description": "Optional -  Filter by order status",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Order Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/orders/{{order_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"orders",
+										"{{order_id}}"
+									],
+									"query": [
+										{
+											"key": "order_status",
+											"value": "0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "User All Addresses",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base_url}}/addresses",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save New Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "address",
+											"value": "House No: xxxx, x no Road, xst floor",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/address-save",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"address-save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "DELETE",
+											"contentType": "string",
+											"description": "Required - Form method override",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/address-delete/{{address_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"address-delete",
+										"{{address_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Store APIs",
+					"item": [
+						{
+							"name": "Stores",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores"
+									],
+									"query": [
+										{
+											"key": "lat",
+											"value": "-34.397",
+											"description": "Optional - latitude of googlemap location",
+											"disabled": true
+										},
+										{
+											"key": "lng",
+											"value": "150.644",
+											"description": "Optional - longitude of googlemap location",
+											"disabled": true
+										},
+										{
+											"key": "division_id",
+											"value": "1",
+											"description": "Optional - Division ID",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Information",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"products"
+									],
+									"query": [
+										{
+											"key": "category_id",
+											"value": "{{category_id}}",
+											"description": "Optional - Filter Data",
+											"disabled": true
+										},
+										{
+											"key": "subcategory_id",
+											"value": "{{subcategory_id}}",
+											"description": "Optional - Filter Data",
+											"disabled": true
+										},
+										{
+											"key": "sub_subcategory_id",
+											"value": "{{sub_subcategory_id}}",
+											"description": "Optional - Filter Data",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "product_name",
+											"description": "Optional - Search by product name",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Videos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/videos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Banners",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/banners",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"banners"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Banner By Key",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/banners/{{banner_key}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"banners",
+										"{{banner_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Slides",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "required",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/stores/{{store_id}}/slides?type=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"stores",
+										"{{store_id}}",
+										"slides"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "1",
+											"description": "1 => Default Slides, 2 => How to order slides"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/categories?store_id={{store_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "store_id",
+									"value": "{{store_id}}",
+									"description": "Optional - You can filter by store with the store_id"
+								}
+							]
+						},
+						"description": "# Demo Response\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"et\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=4\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"qui\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=6\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"amet\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=8\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"voluptates\",\n            \"description\": null,\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_categories\": \"http://aonmart.test/api/v1/sub-categories?category_id=10\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/categories\",\n        \"per_page\": 15,\n        \"to\": 4,\n        \"total\": 4\n    },\n    \"message\": \"Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sub Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sub-categories?category_id={{category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sub-categories"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "{{category_id}}",
+									"description": "Optional - Filter by category_id"
+								}
+							]
+						},
+						"description": "# Demo Response\n```\n{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"necessitatibus\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\",\n            \"sub_sub_categories\": \"http://aonmart.test/api/v1/sub-sub-categories?sub_category_id=2\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-categories\",\n        \"per_page\": 15,\n        \"to\": 1,\n        \"total\": 1\n    },\n    \"message\": \"Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sub Sub Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sub-sub-categories?sub_category_id={{sub_category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sub-sub-categories"
+							],
+							"query": [
+								{
+									"key": "sub_category_id",
+									"value": "{{sub_category_id}}",
+									"description": "Optional - Filter by SubCategory ID"
+								}
+							]
+						},
+						"description": "# Demo Response:\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"ut\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"officia\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-sub-categories\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    },\n    \"message\": \"Sub Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sidebar Menu Item",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sidebar-menu-items?store_id={{store_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sidebar-menu-items"
+							],
+							"query": [
+								{
+									"key": "store_id",
+									"value": "{{store_id}}"
+								}
+							]
+						},
+						"description": "# Demo Response:\n\n```\n{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"ut\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"officia\",\n            \"icon\": \"http://aonmart.test/default/default_image.png\",\n            \"cover_image\": \"http://aonmart.test/default/default_image.png\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"last\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://aonmart.test/api/v1/sub-sub-categories?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://aonmart.test/api/v1/sub-sub-categories\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    },\n    \"message\": \"Sub Sub Categories Successfully fetched.\"\n}\n```"
+					},
+					"response": []
+				}
+			],
+			"description": "# AonMart API Docs\n\n### Server Information\n- Base Url: http://system.aonmart.net/api/v1\n\n### Response Status Code and Message\n- 200 -> Success\n- 201 -> Created\n- 406 -> Not Acceptable\n- 500 -> Server Error"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
